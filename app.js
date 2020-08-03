@@ -31,93 +31,58 @@ const reviews = [
     text:
       "Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
   },
+    {
+    id: 5,
+    name: "Emiley jason",
+    job: "designer",
+    img: src="5.jpg",
+    text:
+      "Axe cray stumptown venmo actually seitan. Vto-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ",
+  }
 ];
 
+const img = document.getElementById('person-img'),
+      author = document.getElementById('author'),
+      job = document.getElementById('job'),
+      info = document.getElementById('info');
+
+const prevBtn = document.querySelector('.prev-btn'),
+      nextBtn = document.querySelector('.next-btn'),
+      randomBtn = document.querySelector('.random-btn');
+
+let currentItem = 0;
+
+window.addEventListener('DOMContentLoaded', () => {
+    showPerson();
+});
 
 
+function showPerson() {
+    const item = reviews[currentItem];
+    img.src = item.img;
+    author.innerText = item.name;
+    job.innerText = item.job;
+    info.innerText = item.text;
+}
+
+nextBtn.addEventListener('click', () => {
+    currentItem++;
+    if(currentItem > reviews.length - 1) {
+        currentItem = 0;
+    }
+    showPerson();
+});
 
 
+prevBtn.addEventListener('click', () => {
+    currentItem--;
+    if(currentItem < 0) {
+        currentItem = reviews.length - 1;
+    }
+    showPerson();
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const img = document.getElementById('person-img'),
-//       author = document.getElementById('author'),
-//       job = document.getElementById('job'),
-//       info = document.getElementById('info');
-
-// const prevBtn = document.querySelector('.prev-btn'),
-//       nextBtn = document.querySelector('.next-btn'),
-//       randomBtn = document.querySelector('.random-btn');
-
-// let currentItem = 0;
-
-// window.addEventListener('DOMContentLoaded', function() {
-//     showPerson();
-// });
-
-// function showPerson() {
-//     const item = reviews[currentItem];
-//     img.src= item.img;
-//     author.innerText = item.name;
-//     job.innerText = item.job;
-//     info.innerText = item.text;
-// }
-
-// nextBtn.addEventListener('click', function() {
-//     currentItem++;
-
-//     if(currentItem > reviews.length - 1) {
-//         currentItem = 0;
-//     }
-//     showPerson();
-// });
-
-
-// prevBtn.addEventListener('click', function() {
-//     currentItem--;
-
-//     if(currentItem < 0) {
-//         currentItem = reviews.length - 1;
-//     }
-//     showPerson();
-// });
-
-// randomBtn.addEventListener('click', function() {
-//     currentItem = Math.floor(Math.random()*reviews.length);
-//     showPerson();
-// });
-
+randomBtn.addEventListener('click', () => {
+    currentItem = Math.floor(Math.random() * reviews.length);
+    showPerson();
+});
